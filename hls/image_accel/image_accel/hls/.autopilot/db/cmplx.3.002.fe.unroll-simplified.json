@@ -1,0 +1,44 @@
+{
+  "0": {
+    "basicblocks": 1,
+    "calls": "3 2 1",
+    "file": "image_accel.cpp",
+    "fileloc": 80,
+    "instructions": 26,
+    "name": "image_accel",
+    "total_instructions": 103
+  },
+  "1": {
+    "basicblocks": 4,
+    "calls": "",
+    "file": "image_accel.cpp",
+    "fileloc": 63,
+    "instructions": 12,
+    "name": "write_output",
+    "stores": {
+      "L": 1
+    },
+    "total_instructions": 12
+  },
+  "2": {
+    "basicblocks": 4,
+    "calls": "",
+    "file": "image_accel.cpp",
+    "fileloc": 47,
+    "instructions": 40,
+    "name": "rgb_to_gray",
+    "total_instructions": 40
+  },
+  "3": {
+    "basicblocks": 4,
+    "calls": "",
+    "file": "image_accel.cpp",
+    "fileloc": 11,
+    "instructions": 25,
+    "loads": {
+      "L": 3
+    },
+    "name": "read_input",
+    "total_instructions": 25
+  }
+}

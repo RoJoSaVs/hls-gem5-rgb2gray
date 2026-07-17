@@ -1,0 +1,60 @@
+
+****** Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2024.1 (64-bit)
+  **** SW Build 5069499 on May 21 2024
+  **** IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
+  **** SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
+  **** Start of session at: Sun Jul 12 13:14:36 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source /tools/Xilinx/Vitis_HLS/2024.1/scripts/vitis_hls/hls.tcl -notrace
+INFO: [HLS 200-10] For user 'ronny' on host '192.168.1.25' (Linux_x86_64 version 7.0.14-201.fc44.x86_64) on Sun Jul 12 13:14:46 CST 2026
+INFO: [HLS 200-10] In directory '/home/ronny/tec/high-level-design-for-electronics/homework/homework-3/hls-gem5-rgb2gray/hls'
+WARNING: [HLS 200-2053] The vitis_hls executable is deprecated. Consider using vitis-run --mode hls --tcl
+Sourcing Tcl script 'scripts/run_hls.tcl'
+INFO: [HLS 200-1510] Running: open_project -reset /home/ronny/tec/high-level-design-for-electronics/homework/homework-3/hls-gem5-rgb2gray/hls/build/image_accel_tcl 
+INFO: [HLS 200-10] Creating and opening project '/home/ronny/tec/high-level-design-for-electronics/homework/homework-3/hls-gem5-rgb2gray/hls/build/image_accel_tcl'.
+INFO: [HLS 200-1510] Running: set_top image_accel 
+INFO: [HLS 200-1510] Running: add_files /home/ronny/tec/high-level-design-for-electronics/homework/homework-3/hls-gem5-rgb2gray/hls/src/image_accel.cpp 
+INFO: [HLS 200-10] Adding design file '/home/ronny/tec/high-level-design-for-electronics/homework/homework-3/hls-gem5-rgb2gray/hls/src/image_accel.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files /home/ronny/tec/high-level-design-for-electronics/homework/homework-3/hls-gem5-rgb2gray/hls/src/image_accel.hpp 
+INFO: [HLS 200-10] Adding design file '/home/ronny/tec/high-level-design-for-electronics/homework/homework-3/hls-gem5-rgb2gray/hls/src/image_accel.hpp' to the project
+INFO: [HLS 200-1510] Running: add_files /home/ronny/tec/high-level-design-for-electronics/homework/homework-3/hls-gem5-rgb2gray/hls/src/image_accel_types.hpp 
+INFO: [HLS 200-10] Adding design file '/home/ronny/tec/high-level-design-for-electronics/homework/homework-3/hls-gem5-rgb2gray/hls/src/image_accel_types.hpp' to the project
+INFO: [HLS 200-1510] Running: add_files -tb /home/ronny/tec/high-level-design-for-electronics/homework/homework-3/hls-gem5-rgb2gray/hls/tb/image_accel_tb.cpp 
+INFO: [HLS 200-10] Adding test bench file '/home/ronny/tec/high-level-design-for-electronics/homework/homework-3/hls-gem5-rgb2gray/hls/tb/image_accel_tb.cpp' to the project
+INFO: [HLS 200-1510] Running: open_solution -reset solution1 -flow_target vivado 
+INFO: [HLS 200-10] Creating and opening solution '/home/ronny/tec/high-level-design-for-electronics/homework/homework-3/hls-gem5-rgb2gray/hls/build/image_accel_tcl/solution1'.
+INFO: [HLS 200-10] Cleaning up the solution database.
+INFO: [HLS 200-1505] Using flow_target 'vivado'
+Resolution: For help on HLS 200-1505 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2024.1%20English&url=ug1448-hls-guidance&resourceid=200-1505.html
+INFO: [HLS 200-1510] Running: set_part xck26-sfvc784-2LV-c 
+INFO: [HLS 200-1611] Setting target device to 'xck26-sfvc784-2LV-c'
+INFO: [HLS 200-1510] Running: create_clock -period 4 -name default 
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 4ns.
+INFO: [HLS 200-1510] Running: set_clock_uncertainty 0.5 
+INFO: [SYN 201-201] Setting up clock 'default' with an uncertainty of 0.5ns.
+INFO: [HLS 200-1510] Running: csim_design 
+INFO: [SIM 211-2] *************** CSIM start ***************
+INFO: [SIM 211-4] CSIM will launch CLANG as the compiler.
+INFO: [HLS 200-2036] Building debug C Simulation binaries
+   Compiling ../../../../../tb/image_accel_tb.cpp in debug mode
+   Generating csim.exe
+ld.lld: error: undefined symbol: image_accel
+>>> referenced by image_accel_tb.cpp:72 (../../../../../tb/image_accel_tb.cpp:72)
+>>>               obj/image_accel_tb.o:((anonymous namespace)::run_known_pixel_test())
+>>> referenced by image_accel_tb.cpp:91 (../../../../../tb/image_accel_tb.cpp:91)
+>>>               obj/image_accel_tb.o:((anonymous namespace)::run_pattern_test())
+clang-14: error: linker command failed with exit code 1 (use -v to see invocation)
+make: *** [Makefile.rules:350: csim.exe] Error 1
+ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s).
+INFO: [SIM 211-3] *************** CSIM finish ***************
+INFO: [HLS 200-2161] Finished Command csim_design Elapsed time: 00:00:03; Allocated memory: 0.000 MB.
+4
+    while executing
+"source scripts/run_hls.tcl"
+    ("uplevel" body line 1)
+    invoked from within
+"uplevel \#0 [list source $tclfile] "
+
+INFO: [HLS 200-112] Total CPU user time: 14.36 seconds. Total CPU system time: 0.72 seconds. Total elapsed time: 15.72 seconds; peak allocated memory: 324.809 MB.

@@ -1,0 +1,64 @@
+<pragmas>
+<pragma file="/tools/Xilinx/Vitis_HLS/2024.1/common/technology/autopilot/etc/ap_common.h" line="523" pragmaType="inline" parentfunction="_ZN8ssdm_intILi18ELb0EEC2EDq18_j" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="hls::stream<image_accel_rgb_t, 0>::stream(char const*)" off="0" region="0" recursive="0"/>
+<pragma file="../src/image_accel.cpp" line="68" pragmaType="inline" parentfunction="write_output" off="1" region="0" recursive="0"/>
+<pragma file="../src/image_accel.cpp" line="72" pragmaType="pipeline" parentfunction="write_output" off="0" ii="1" rewind="0" style=""/>
+<pragma file="../src/image_accel.cpp" line="71" pragmaType="loop_tripcount" parentfunction="write_output" min="1" max="2073600" avg="2073600"/>
+<pragma file="../src/image_accel.cpp" line="52" pragmaType="inline" parentfunction="rgb_to_gray" off="1" region="0" recursive="0"/>
+<pragma file="../src/image_accel.cpp" line="56" pragmaType="pipeline" parentfunction="rgb_to_gray" off="0" ii="1" rewind="0" style=""/>
+<pragma file="../src/image_accel.cpp" line="55" pragmaType="loop_tripcount" parentfunction="rgb_to_gray" min="1" max="2073600" avg="2073600"/>
+<pragma file="../src/image_accel.cpp" line="16" pragmaType="inline" parentfunction="read_input" off="1" region="0" recursive="0"/>
+<pragma file="../src/image_accel.cpp" line="20" pragmaType="pipeline" parentfunction="read_input" off="0" ii="1" rewind="0" style=""/>
+<pragma file="../src/image_accel.cpp" line="19" pragmaType="loop_tripcount" parentfunction="read_input" min="1" max="2073600" avg="2073600"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="checkOverflowCsim" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="hls::stream<ap_uint<8>, 0>::stream(char const*)" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_uint<8>::ap_uint<18>(ap_uint<18> const&)" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<8, false>::ap_int_base<18, false>(ap_int_base<18, false> const&)" off="0" region="0" recursive="0"/>
+<pragma file="../src/image_accel.cpp" line="101" pragmaType="dataflow" parentfunction="image_accel" disable_start_propagation="0"/>
+<pragma file="../src/image_accel.cpp" line="88" pragmaType="interface" parentfunction="image_accel" mode="m_axi" port="input_rgb" bundle="gmem0" offset="slave" name="" depth="6220800" num_read_outstanding="16" num_write_outstanding="-1" max_burst_read_length="64" max_burst_write_length="-1" latency="-1" max_widen_bitwidth="-1" channel=""/>
+<pragma file="../src/image_accel.cpp" line="89" pragmaType="interface" parentfunction="image_accel" mode="m_axi" port="output_gray" bundle="gmem1" offset="slave" name="" depth="2073600" num_read_outstanding="-1" num_write_outstanding="16" max_burst_read_length="-1" max_burst_write_length="64" latency="-1" max_widen_bitwidth="-1" channel=""/>
+<pragma file="../src/image_accel.cpp" line="93" pragmaType="interface" parentfunction="image_accel" mode="s_axilite" port="input_rgb" bundle="control" offset="-1" name="" clock="" impl="" register="0"/>
+<pragma file="../src/image_accel.cpp" line="94" pragmaType="interface" parentfunction="image_accel" mode="s_axilite" port="output_gray" bundle="control" offset="-1" name="" clock="" impl="" register="0"/>
+<pragma file="../src/image_accel.cpp" line="95" pragmaType="interface" parentfunction="image_accel" mode="s_axilite" port="num_pixels" bundle="control" offset="-1" name="" clock="" impl="" register="0"/>
+<pragma file="../src/image_accel.cpp" line="96" pragmaType="interface" parentfunction="image_accel" mode="s_axilite" port="" bundle="control" offset="-1" name="" clock="" impl="" register="0"/>
+<pragma file="../src/image_accel.cpp" line="105" pragmaType="stream" parentfunction="image_accel" depth="64" type="fifo" variable="rgb_stream"/>
+<pragma file="../src/image_accel.cpp" line="106" pragmaType="stream" parentfunction="image_accel" depth="64" type="fifo" variable="gray_stream"/>
+<pragma file="/tools/Xilinx/Vitis_HLS/2024.1/common/technology/autopilot/etc/ap_common.h" line="523" pragmaType="inline" parentfunction="ssdm_int<8, false>::ssdm_int(unsigned char)" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<18, false>::ap_int_base(int)" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_uint<18>::ap_uint<18, false>(ap_int_base<18, false> const&)" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<18, false>::ap_int_base<28, false>(ap_int_base<28, false> const&)" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="checkOverflowBaseC" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<28, false>::ap_int_base<27, false>(ap_int_base<27, false> const&)" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<28, false>::ap_int_base<26, false>(ap_int_base<26, false> const&)" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<28, false>::ap_int_base(int)" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_uint<28>::ap_uint<28, false>(ap_int_base<28, false> const&)" off="0" region="0" recursive="0"/>
+<pragma file="/tools/Xilinx/Vitis_HLS/2024.1/common/technology/autopilot/etc/ap_common.h" line="523" pragmaType="inline" parentfunction="_ZN8ssdm_intILi28ELb0EEC2EDq28_j" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<27, false>::ap_int_base<26, false>(ap_int_base<26, false> const&)" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_uint<27>::ap_uint<27, false>(ap_int_base<27, false> const&)" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<27, false>::ap_int_base(int)" off="0" region="0" recursive="0"/>
+<pragma file="/tools/Xilinx/Vitis_HLS/2024.1/common/technology/autopilot/etc/ap_common.h" line="523" pragmaType="inline" parentfunction="_ZN8ssdm_intILi27ELb0EEC2EDq27_j" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<26, false>::ap_int_base<18, false>(ap_int_base<18, false> const&)" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<26, false>::ap_int_base<8, false>(ap_int_base<8, false> const&)" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="read" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<8, false>::operator unsigned long long() const" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="read" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<26, false>::ap_int_base(int)" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_uint<26>::ap_uint<26, false>(ap_int_base<26, false> const&)" off="0" region="0" recursive="0"/>
+<pragma file="/tools/Xilinx/Vitis_HLS/2024.1/common/technology/autopilot/etc/ap_common.h" line="523" pragmaType="inline" parentfunction="_ZN8ssdm_intILi26ELb0EEC2EDq26_j" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<18, false>::ap_int_base(unsigned int)" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="checkOverflowBaseC" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="read" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<18, false>::RType<18, false>::arg1 operator>><18, false>(ap_int_base<18, false> const&, int)" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="read" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_uint<8>::ap_uint(unsigned char)" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="write" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<8, false>::ap_int_base(unsigned char)" off="0" region="0" recursive="0"/>
+<pragma file="../src/image_accel.cpp" line="37" pragmaType="inline" parentfunction="grayscale_from_rgb" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="write" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_uint<18>::ap_uint(unsigned int)" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<18, false>::RType<8, false>::mult operator*<18, false, 8, false>(ap_int_base<18, false> const&, ap_int_base<8, false> const&)" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<26, false>::RType<26, false>::plus operator+<26, false, 26, false>(ap_int_base<26, false> const&, ap_int_base<26, false> const&)" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<27, false>::RType<26, false>::plus operator+<27, false, 26, false>(ap_int_base<27, false> const&, ap_int_base<26, false> const&)" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_uint<18>::ap_uint<28>(ap_uint<28> const&)" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="checkOverflowCsim" off="0" region="0" recursive="0"/>
+</pragmas>

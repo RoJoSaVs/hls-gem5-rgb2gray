@@ -1,0 +1,49 @@
+<profile>
+
+<section name = "Vitis HLS Report for 'image_accel'" level="0">
+<item name = "Date">Sat Jul 11 19:11:15 2026
+</item>
+<item name = "Version">2024.1 (Build 5069499 on May 21 2024)</item>
+<item name = "Project">image_accel</item>
+<item name = "Solution">hls (Vivado IP Flow Target)</item>
+<item name = "Product family">zynquplus</item>
+<item name = "Target device">xck26-sfvc784-2LV-c</item>
+</section>
+
+<section name = "Performance Estimates" level="0">
+<item name = "Timing">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="4">Clock, Target, Estimated, Uncertainty</keys>
+<column name="ap_clk">4.00 ns, 3.500 ns, 0.50 ns</column>
+</table>
+</item>
+</section>
+</item>
+<item name = "Latency">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="8">, min, max, min, max, min, max, Type</keys>
+<column name="">28, 6220813, 0.112 us, 24.883 ms, 17, 6220814, dataflow</column>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="0">
+<keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
+<column name="call_ln101_entry_proc_fu_134">entry_proc, 0, 0, 0 ns, 0 ns, 0, 0, no</column>
+<column name="grp_p_anonymous_namespace_read_input_fu_141">p_anonymous_namespace_read_input, 16, 6220813, 64.000 ns, 24.883 ms, 16, 6220813, no</column>
+<column name="grp_p_anonymous_namespace_rgb_to_gray_fu_153">p_anonymous_namespace_rgb_to_gray, 9, 2073608, 36.000 ns, 8.294 ms, 9, 2073608, no</column>
+<column name="grp_p_anonymous_namespace_write_output_fu_161">p_anonymous_namespace_write_output, 11, 2073610, 44.000 ns, 8.294 ms, 11, 2073610, no</column>
+</table>
+</item>
+<item name = "Loop"><table name="" hasTotal="0">
+<keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
+</table>
+</item>
+</section>
+</item>
+</section>
+</item>
+</section>
+</profile>

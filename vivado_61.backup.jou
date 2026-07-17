@@ -1,0 +1,24 @@
+#-----------------------------------------------------------
+# Vivado v2024.1 (64-bit)
+# SW Build 5076996 on Wed May 22 18:36:09 MDT 2024
+# IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
+# SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
+# Start of session at: Sun Jul 12 20:52:56 2026
+# Process ID: 61
+# Current directory: /home/ronny/tec/high-level-design-for-electronics/homework/homework-3/hls-gem5-rgb2gray
+# Command line: vivado -mode batch -source /dev/stdin
+# Log file: /home/ronny/tec/high-level-design-for-electronics/homework/homework-3/hls-gem5-rgb2gray/vivado.log
+# Journal file: /home/ronny/tec/high-level-design-for-electronics/homework/homework-3/hls-gem5-rgb2gray/vivado.jou
+# Running On        :192.168.1.25
+# Platform          :unknown
+# Operating System  :unknown
+# Processor Detail  :Intel(R) Core(TM) i5-8250U CPU @ 1.60GHz
+# CPU Frequency     :2700.060 MHz
+# CPU Physical cores:4
+# CPU Logical cores :8
+# Host memory       :8170 MB
+# Swap memory       :8169 MB
+# Total Virtual     :16339 MB
+# Available Virtual :7183 MB
+#-----------------------------------------------------------
+source /dev/stdin

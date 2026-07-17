@@ -1,0 +1,26 @@
+[
+  {
+    "directory": "/home/ronny/tec/high-level-design-for-electronics/homework/homework-3/hls-gem5-rgb2gray/hls/image_accel",
+    "arguments": [
+      "/tools/Xilinx/Vitis_HLS/2024.1/vcxx/libexec/clang++",
+      "-fhls",
+      "-hls-syn-headers-dir=/tools/Xilinx/Vitis_HLS/2024.1/common/technology/autopilot",
+      "",
+      "-c",
+      "/home/ronny/tec/high-level-design-for-electronics/homework/homework-3/hls-gem5-rgb2gray/hls/src/image_accel.cpp"
+    ],
+    "file": "/home/ronny/tec/high-level-design-for-electronics/homework/homework-3/hls-gem5-rgb2gray/hls/src/image_accel.cpp"
+  },
+  {
+    "directory": "/home/ronny/tec/high-level-design-for-electronics/homework/homework-3/hls-gem5-rgb2gray/hls/image_accel",
+    "arguments": [
+      "/tools/Xilinx/Vitis_HLS/2024.1/vcxx/libexec/clang++",
+      "-fhls-tb",
+      "-hls-sim-headers-dir=/tools/Xilinx/Vitis_HLS/2024.1/include",
+      "",
+      "-c",
+      "/home/ronny/tec/high-level-design-for-electronics/homework/homework-3/hls-gem5-rgb2gray/hls/tb/image_accel_tb.cpp"
+    ],
+    "file": "/home/ronny/tec/high-level-design-for-electronics/homework/homework-3/hls-gem5-rgb2gray/hls/tb/image_accel_tb.cpp"
+  }
+]

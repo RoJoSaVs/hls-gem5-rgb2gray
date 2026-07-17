@@ -1,0 +1,206 @@
+
+
+================================================================
+== Synthesis Summary Report of 'image_accel'
+================================================================
++ General Information: 
+    * Date:           Sat Jul 11 19:11:16 2026
+    * Version:        2024.1 (Build 5069499 on May 21 2024)
+    * Project:        image_accel
+    * Solution:       hls (Vivado IP Flow Target)
+    * Product family: zynquplus
+    * Target device:  xck26-sfvc784-2LV-c
+    
+
++ Performance & Resource Estimates: 
+    
+    PS: '+' for module; 'o' for loop; '*' for dataflow
+    +-------------------------------------------------------------+------+------+---------+-----------+----------+---------+---------+----------+--------+---------+-----------+-----------+-----+
+    |                           Modules                           | Issue|      | Latency |  Latency  | Iteration|         |   Trip  |          |        |         |           |           |     |
+    |                           & Loops                           | Type | Slack| (cycles)|    (ns)   |  Latency | Interval|  Count  | Pipelined|  BRAM  |   DSP   |     FF    |    LUT    | URAM|
+    +-------------------------------------------------------------+------+------+---------+-----------+----------+---------+---------+----------+--------+---------+-----------+-----------+-----+
+    |+ image_accel*                                               |     -|  0.00|  6220813|  2.488e+07|         -|  6220814|        -|  dataflow|  4 (1%)|  2 (~0%)|  2873 (1%)|  3532 (3%)|    -|
+    | + entry_proc                                                |     -|  1.75|        0|      0.000|         -|        0|        -|        no|       -|        -|    3 (~0%)|   29 (~0%)|    -|
+    | + p_anonymous_namespace_read_input                          |     -|  0.00|  6220813|  2.488e+07|         -|  6220813|        -|        no|       -|        -|  363 (~0%)|  676 (~0%)|    -|
+    |  + p_anonymous_namespace_read_input_Pipeline_read_loop      |     -|  0.00|  6220811|  2.488e+07|         -|  6220811|        -|        no|       -|        -|  357 (~0%)|  600 (~0%)|    -|
+    |   o read_loop                                               |    II|  3.50|  6220809|  2.488e+07|        13|        3|  2073600|       yes|       -|        -|          -|          -|    -|
+    | + p_anonymous_namespace_rgb_to_gray                         |     -|  0.00|  2073608|  8.294e+06|         -|  2073608|        -|        no|       -|  2 (~0%)|  104 (~0%)|  243 (~0%)|    -|
+    |  + p_anonymous_namespace_rgb_to_gray_Pipeline_process_loop  |     -|  0.95|  2073606|  8.294e+06|         -|  2073606|        -|        no|       -|  2 (~0%)|   67 (~0%)|  176 (~0%)|    -|
+    |   o process_loop                                            |     -|  3.50|  2073604|  8.294e+06|         6|        1|  2073600|       yes|       -|        -|          -|          -|    -|
+    | + p_anonymous_namespace_write_output                        |     -|  0.00|  2073610|  8.294e+06|         -|  2073610|        -|        no|       -|        -|  220 (~0%)|  312 (~0%)|    -|
+    |  + p_anonymous_namespace_write_output_Pipeline_write_loop   |     -|  0.00|  2073608|  8.294e+06|         -|  2073608|        -|        no|       -|        -|  119 (~0%)|  227 (~0%)|    -|
+    |   o write_loop                                              |     -|  3.50|  2073606|  8.294e+06|         8|        1|  2073600|       yes|       -|        -|          -|          -|    -|
+    +-------------------------------------------------------------+------+------+---------+-----------+----------+---------+---------+----------+--------+---------+-----------+-----------+-----+
+
+
+================================================================
+== HW Interfaces
+================================================================
+* M_AXI
++-------------+------------+------------+---------------+---------+--------+----------+-----------+--------------+--------------+-------------+-------------+-------------------+
+| Interface   | Read/Write | Data Width | Address Width | Latency | Offset | Register | Max Widen | Max Read     | Max Write    | Num Read    | Num Write   | Resource Estimate |
+|             |            | (SW->HW)   |               |         |        |          | Bitwidth  | Burst Length | Burst Length | Outstanding | Outstanding |                   |
++-------------+------------+------------+---------------+---------+--------+----------+-----------+--------------+--------------+-------------+-------------+-------------------+
+| m_axi_gmem0 | READ_ONLY  | 8 -> 8     | 64            | 0       | slave  | 0        | 0         | 64           | 16           | 16          | 16          | BRAM=1            |
+| m_axi_gmem1 | WRITE_ONLY | 8 -> 8     | 64            | 0       | slave  | 0        | 0         | 16           | 64           | 16          | 16          | BRAM=1            |
++-------------+------------+------------+---------------+---------+--------+----------+-----------+--------------+--------------+-------------+-------------+-------------------+
+
+* S_AXILITE Interfaces
++---------------+------------+---------------+--------+----------+
+| Interface     | Data Width | Address Width | Offset | Register |
++---------------+------------+---------------+--------+----------+
+| s_axi_control | 32         | 6             | 16     | 0        |
++---------------+------------+---------------+--------+----------+
+
+* S_AXILITE Registers
++---------------+---------------+--------+-------+--------+----------------------------------+----------------------------------------------------------------------+
+| Interface     | Register      | Offset | Width | Access | Description                      | Bit Fields                                                           |
++---------------+---------------+--------+-------+--------+----------------------------------+----------------------------------------------------------------------+
+| s_axi_control | CTRL          | 0x00   | 32    | RW     | Control signals                  | 0=AP_START 1=AP_DONE 2=AP_IDLE 3=AP_READY 7=AUTO_RESTART 9=INTERRUPT |
+| s_axi_control | GIER          | 0x04   | 32    | RW     | Global Interrupt Enable Register | 0=Enable                                                             |
+| s_axi_control | IP_IER        | 0x08   | 32    | RW     | IP Interrupt Enable Register     | 0=CHAN0_INT_EN 1=CHAN1_INT_EN                                        |
+| s_axi_control | IP_ISR        | 0x0c   | 32    | RW     | IP Interrupt Status Register     | 0=CHAN0_INT_ST 1=CHAN1_INT_ST                                        |
+| s_axi_control | input_rgb_1   | 0x10   | 32    | W      | Data signal of input_rgb         |                                                                      |
+| s_axi_control | input_rgb_2   | 0x14   | 32    | W      | Data signal of input_rgb         |                                                                      |
+| s_axi_control | output_gray_1 | 0x1c   | 32    | W      | Data signal of output_gray       |                                                                      |
+| s_axi_control | output_gray_2 | 0x20   | 32    | W      | Data signal of output_gray       |                                                                      |
+| s_axi_control | num_pixels    | 0x28   | 32    | W      | Data signal of num_pixels        |                                                                      |
++---------------+---------------+--------+-------+--------+----------------------------------+----------------------------------------------------------------------+
+
+* TOP LEVEL CONTROL
++-----------+------------+-----------+
+| Interface | Type       | Ports     |
++-----------+------------+-----------+
+| ap_clk    | clock      | ap_clk    |
+| ap_rst_n  | reset      | ap_rst_n  |
+| interrupt | interrupt  | interrupt |
+| ap_ctrl   | ap_ctrl_hs |           |
++-----------+------------+-----------+
+
+
+================================================================
+== SW I/O Information
+================================================================
+* Top Function Arguments
++-------------+-----------+--------------+
+| Argument    | Direction | Datatype     |
++-------------+-----------+--------------+
+| input_rgb   | in        |  const *     |
+| output_gray | out       | pointer      |
+| num_pixels  | in        | unsigned int |
++-------------+-----------+--------------+
+
+* SW-to-HW Mapping
++-------------+---------------+-----------+----------+-----------------------------------------+
+| Argument    | HW Interface  | HW Type   | HW Usage | HW Info                                 |
++-------------+---------------+-----------+----------+-----------------------------------------+
+| input_rgb   | m_axi_gmem0   | interface |          | channel=0                               |
+| input_rgb   | s_axi_control | register  | offset   | name=input_rgb_1 offset=0x10 range=32   |
+| input_rgb   | s_axi_control | register  | offset   | name=input_rgb_2 offset=0x14 range=32   |
+| output_gray | m_axi_gmem1   | interface |          | channel=0                               |
+| output_gray | s_axi_control | register  | offset   | name=output_gray_1 offset=0x1c range=32 |
+| output_gray | s_axi_control | register  | offset   | name=output_gray_2 offset=0x20 range=32 |
+| num_pixels  | s_axi_control | register  |          | name=num_pixels offset=0x28 range=32    |
++-------------+---------------+-----------+----------+-----------------------------------------+
+
+
+================================================================
+== M_AXI Burst Information
+================================================================
+ Note: All burst requests might be further partitioned into multiple requests during RTL generation based on max_read_burst_length or max_write_burst_length settings.
+
+* All M_AXI Variable Accesses
++--------------+-------------+------------------------------+-----------+--------------+------------+-------------------------------------------------+
+| HW Interface | Variable    | Access Location              | Direction | Burst Status | Resolution | Problem                                         |
++--------------+-------------+------------------------------+-----------+--------------+------------+-------------------------------------------------+
+| m_axi_gmem0  | input_rgb   | ../src/image_accel.cpp:25:54 | read      | Fail         | 214-227    | Volatile or Atomic access cannot be transformed |
+| m_axi_gmem0  | input_rgb   | ../src/image_accel.cpp:26:54 | read      | Fail         | 214-227    | Volatile or Atomic access cannot be transformed |
+| m_axi_gmem0  | input_rgb   | ../src/image_accel.cpp:27:54 | read      | Fail         | 214-227    | Volatile or Atomic access cannot be transformed |
+| m_axi_gmem1  | output_gray | ../src/image_accel.cpp:73:17 | write     | Fail         | 214-227    | Volatile or Atomic access cannot be transformed |
++--------------+-------------+------------------------------+-----------+--------------+------------+-------------------------------------------------+
+
+    * Resolution URL: docs.xilinx.com/access/sources/dita/topic?Doc_Version=2024.1%20English&url=ug1448-hls-guidance&resourceid=XXX-YYY.html (replace XXX-YYY with column value)
+
+================================================================
+== Bind Op Report
+================================================================
++-------------------------------------------------------------+-----+--------+--------------+-------+-----------+---------+
+| Name                                                        | DSP | Pragma | Variable     | Op    | Impl      | Latency |
++-------------------------------------------------------------+-----+--------+--------------+-------+-----------+---------+
+| + image_accel                                               | 2   |        |              |       |           |         |
+|  + p_anonymous_namespace_read_input                         | 0   |        |              |       |           |         |
+|   + p_anonymous_namespace_read_input_Pipeline_read_loop     | 0   |        |              |       |           |         |
+|     icmp_ln18_fu_125_p2                                     |     |        | icmp_ln18    | seteq | auto      | 0       |
+|     add_ln18_fu_131_p2                                      |     |        | add_ln18     | add   | fabric    | 0       |
+|     base_fu_143_p2                                          |     |        | base         | sub   | fabric    | 0       |
+|     add_ln25_fu_153_p2                                      |     |        | add_ln25     | add   | fabric    | 0       |
+|     add_ln26_fu_170_p2                                      |     |        | add_ln26     | add   | fabric    | 0       |
+|     add_ln26_1_fu_179_p2                                    |     |        | add_ln26_1   | add   | fabric    | 0       |
+|     add_ln27_fu_190_p2                                      |     |        | add_ln27     | add   | fabric    | 0       |
+|     add_ln27_1_fu_199_p2                                    |     |        | add_ln27_1   | add   | fabric    | 0       |
+|  + p_anonymous_namespace_rgb_to_gray                        | 2   |        |              |       |           |         |
+|   + p_anonymous_namespace_rgb_to_gray_Pipeline_process_loop | 2   |        |              |       |           |         |
+|     icmp_ln54_fu_85_p2                                      |     |        | icmp_ln54    | seteq | auto      | 0       |
+|     i_2_fu_91_p2                                            |     |        | i_2          | add   | fabric    | 0       |
+|     mul_8ns_8ns_15_1_1_U12                                  |     |        | mul_ln39     | mul   | auto      | 0       |
+|     mac_muladd_8ns_8ns_15ns_16_4_1_U14                      | 1   |        | mul_ln39_1   | mul   | dsp_slice | 3       |
+|     mac_muladd_8ns_5ns_15ns_15_4_1_U13                      | 1   |        | mul_ln39_2   | mul   | dsp_slice | 3       |
+|     mac_muladd_8ns_5ns_15ns_15_4_1_U13                      | 1   |        | zext_ln39_1  | zext  | dsp_slice | 3       |
+|     mac_muladd_8ns_5ns_15ns_15_4_1_U13                      | 1   |        | add_ln39     | add   | dsp_slice | 3       |
+|     mac_muladd_8ns_8ns_15ns_16_4_1_U14                      | 1   |        | weighted_sum | add   | dsp_slice | 3       |
+|  + p_anonymous_namespace_write_output                       | 0   |        |              |       |           |         |
+|   + p_anonymous_namespace_write_output_Pipeline_write_loop  | 0   |        |              |       |           |         |
+|     icmp_ln70_fu_104_p2                                     |     |        | icmp_ln70    | seteq | auto      | 0       |
+|     add_ln70_fu_110_p2                                      |     |        | add_ln70     | add   | fabric    | 0       |
+|     add_ln73_fu_120_p2                                      |     |        | add_ln73     | add   | fabric    | 0       |
++-------------------------------------------------------------+-----+--------+--------------+-------+-----------+---------+
+
+
+================================================================
+== Storage Report
+================================================================
++-------------------+--------------+-------------+------+------+--------+---------------+--------+---------+------------------+
+| Name              | Usage        | Type        | BRAM | URAM | Pragma | Variable      | Impl   | Latency | Bitwidth, Depth, |
+|                   |              |             |      |      |        |               |        |         | Banks            |
++-------------------+--------------+-------------+------+------+--------+---------------+--------+---------+------------------+
+| + image_accel     |              |             | 4    | 0    |        |               |        |         |                  |
+|   control_s_axi_U | interface    | s_axilite   |      |      |        |               |        |         |                  |
+|   gmem0_m_axi_U   | interface    | m_axi       | 1    |      |        |               |        |         |                  |
+|   gmem1_m_axi_U   | interface    | m_axi       | 1    |      |        |               |        |         |                  |
+|   output_gray_c_U | fifo channel | scalar prop |      |      |        | output_gray_c | srl    | 0       | 64, 4, 1         |
+|   rgb_stream_U    | fifo channel | stream      | 2    |      |        | rgb_stream    | memory | 0       | 24, 64, 1        |
+|   num_pixels_c1_U | fifo channel | scalar prop |      |      |        | num_pixels_c1 | srl    | 0       | 32, 2, 1         |
+|   gray_stream_U   | fifo channel | stream      |      |      |        | gray_stream   | srl    | 0       | 8, 64, 1         |
+|   num_pixels_c_U  | fifo channel | scalar prop |      |      |        | num_pixels_c  | srl    | 0       | 32, 2, 1         |
++-------------------+--------------+-------------+------+------+--------+---------------+--------+---------+------------------+
+
+
+================================================================
+== Pragma Report
+================================================================
+* Valid Pragma Syntax
++----------------+-------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------+
+| Type           | Options                                                                                                           | Location                                               |
++----------------+-------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------+
+| inline         | off                                                                                                               | ../src/image_accel.cpp:16 in read_input                |
+| loop_tripcount | min=1 max=2073600 avg=2073600                                                                                     | ../src/image_accel.cpp:19 in read_input                |
+| pipeline       | II=1                                                                                                              | ../src/image_accel.cpp:20 in read_input                |
+| inline         |                                                                                                                   | ../src/image_accel.cpp:37 in grayscale_from_rgb        |
+| inline         | off                                                                                                               | ../src/image_accel.cpp:52 in rgb_to_gray               |
+| loop_tripcount | min=1 max=2073600 avg=2073600                                                                                     | ../src/image_accel.cpp:55 in rgb_to_gray               |
+| pipeline       | II=1                                                                                                              | ../src/image_accel.cpp:56 in rgb_to_gray               |
+| inline         | off                                                                                                               | ../src/image_accel.cpp:68 in write_output              |
+| loop_tripcount | min=1 max=2073600 avg=2073600                                                                                     | ../src/image_accel.cpp:71 in write_output              |
+| pipeline       | II=1                                                                                                              | ../src/image_accel.cpp:72 in write_output              |
+| interface      | m_axi port=input_rgb offset=slave bundle=gmem0 depth=6220800 max_read_burst_length=64 num_read_outstanding=16     | ../src/image_accel.cpp:88 in image_accel, input_rgb    |
+| interface      | m_axi port=output_gray offset=slave bundle=gmem1 depth=2073600 max_write_burst_length=64 num_write_outstanding=16 | ../src/image_accel.cpp:89 in image_accel, output_gray  |
+| interface      | s_axilite port=input_rgb bundle=control                                                                           | ../src/image_accel.cpp:93 in image_accel, input_rgb    |
+| interface      | s_axilite port=output_gray bundle=control                                                                         | ../src/image_accel.cpp:94 in image_accel, output_gray  |
+| interface      | s_axilite port=num_pixels bundle=control                                                                          | ../src/image_accel.cpp:95 in image_accel, num_pixels   |
+| interface      | s_axilite port=return bundle=control                                                                              | ../src/image_accel.cpp:96 in image_accel, return       |
+| dataflow       |                                                                                                                   | ../src/image_accel.cpp:101 in image_accel              |
+| stream         | variable=rgb_stream depth=64                                                                                      | ../src/image_accel.cpp:105 in image_accel, rgb_stream  |
+| stream         | variable=gray_stream depth=64                                                                                     | ../src/image_accel.cpp:106 in image_accel, gray_stream |
++----------------+-------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------+
+
+

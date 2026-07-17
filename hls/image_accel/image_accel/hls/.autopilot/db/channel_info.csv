@@ -1,0 +1,5 @@
+,output_gray_c_U,,chan_status1.csv
+,rgb_stream_U,,chan_status2.csv
+,num_pixels_c1_U,,chan_status3.csv
+,gray_stream_U,,chan_status4.csv
+,num_pixels_c_U,,chan_status5.csv

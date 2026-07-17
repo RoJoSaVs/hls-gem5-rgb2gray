@@ -1,0 +1,653 @@
+[
+    {
+        "name": "image_accel",
+        "df_function": "%F220",
+        "df_type": "Function",
+        "project": "SLX",
+        "processes": {
+            "1": {
+                "id": "1",
+                "name": "Artificial<Start>",
+                "src_range": {
+                    "start_loc": {
+                        "file": "/home/ronny/tec/high-level-design-for-electronics/homework/homework-3/hls-gem5-rgb2gray/hls/src/image_accel.cpp",
+                        "line": 80,
+                        "column": 12
+                    },
+                    "end_loc": {
+                        "file": "/home/ronny/tec/high-level-design-for-electronics/homework/homework-3/hls-gem5-rgb2gray/hls/src/image_accel.cpp",
+                        "line": 111,
+                        "column": 1
+                    }
+                },
+                "display_name": "<START>",
+                "kind": "start"
+            },
+            "2": {
+                "id": "2",
+                "name": "Artificial<End>",
+                "src_range": {
+                    "start_loc": {
+                        "file": "/home/ronny/tec/high-level-design-for-electronics/homework/homework-3/hls-gem5-rgb2gray/hls/src/image_accel.cpp",
+                        "line": 80,
+                        "column": 12
+                    },
+                    "end_loc": {
+                        "file": "/home/ronny/tec/high-level-design-for-electronics/homework/homework-3/hls-gem5-rgb2gray/hls/src/image_accel.cpp",
+                        "line": 111,
+                        "column": 1
+                    }
+                },
+                "display_name": "<END>",
+                "kind": "end"
+            },
+            "3": {
+                "id": "3",
+                "name": "Region<Atomic(R2 image_accel) BB 'entry_iso0'>",
+                "src_range": {
+                    "start_loc": {
+                        "file": "/home/ronny/tec/high-level-design-for-electronics/homework/homework-3/hls-gem5-rgb2gray/hls/src/image_accel.cpp",
+                        "line": 103,
+                        "column": 5
+                    },
+                    "end_loc": {
+                        "file": "/home/ronny/tec/high-level-design-for-electronics/homework/homework-3/hls-gem5-rgb2gray/hls/src/image_accel.cpp",
+                        "line": 104,
+                        "column": 45
+                    }
+                },
+                "display_name": "Process 1",
+                "io_signatures": {
+                    "has_unresolved_accesses": true,
+                    "accesses": []
+                },
+                "subregions": [
+                    {
+                        "id": "%F220_R2",
+                        "description": "<atomic 'entry_iso0'>",
+                        "src_range": {
+                            "start_loc": {
+                                "file": "/home/ronny/tec/high-level-design-for-electronics/homework/homework-3/hls-gem5-rgb2gray/hls/src/image_accel.cpp",
+                                "line": 103,
+                                "column": 5
+                            },
+                            "end_loc": {
+                                "file": "/home/ronny/tec/high-level-design-for-electronics/homework/homework-3/hls-gem5-rgb2gray/hls/src/image_accel.cpp",
+                                "line": 104,
+                                "column": 45
+                            }
+                        }
+                    }
+                ],
+                "subdataflow": []
+            },
+            "4": {
+                "id": "4",
+                "name": "Region<Call(R3 image_accel) BB 'entry_iso1' Callee '(anonymous namespace)::read_input'>",
+                "src_range": {
+                    "start_loc": {
+                        "file": "/home/ronny/tec/high-level-design-for-electronics/homework/homework-3/hls-gem5-rgb2gray/hls/src/image_accel.cpp",
+                        "line": 108,
+                        "column": 5
+                    },
+                    "end_loc": {
+                        "file": "/home/ronny/tec/high-level-design-for-electronics/homework/homework-3/hls-gem5-rgb2gray/hls/src/image_accel.cpp",
+                        "line": 108,
+                        "column": 49
+                    }
+                },
+                "display_name": "read_loop",
+                "io_signatures": {
+                    "has_unresolved_accesses": false,
+                    "accesses": [
+                        {
+                            "variable": {
+                                "location": {
+                                    "file": "/home/ronny/tec/high-level-design-for-electronics/homework/homework-3/hls-gem5-rgb2gray/hls/src/image_accel.cpp",
+                                    "line": 81,
+                                    "column": 0
+                                },
+                                "id": "VId_39_*0(0,8)arg+?(?,8)",
+                                "name": "(*input_rgb)",
+                                "display_name": "const volatile image_accel_byte_t *input_rgb"
+                            },
+                            "reads": [
+                                {
+                                    "access_kind": "Ptr",
+                                    "range": {
+                                        "is_exact": false,
+                                        "is_empty": false
+                                    },
+                                    "instr": "load",
+                                    "exec_count": 516
+                                },
+                                {
+                                    "access_kind": "Ptr",
+                                    "range": {
+                                        "is_exact": false,
+                                        "is_empty": false
+                                    },
+                                    "instr": "load",
+                                    "exec_count": 516
+                                },
+                                {
+                                    "access_kind": "Ptr",
+                                    "range": {
+                                        "is_exact": false,
+                                        "is_empty": false
+                                    },
+                                    "instr": "load",
+                                    "exec_count": 516
+                                }
+                            ],
+                            "writes": [],
+                            "kind": "Ptr",
+                            "has_alias": false,
+                            "arg_idx": 0
+                        },
+                        {
+                            "variable": {
+                                "location": {
+                                    "file": "/home/ronny/tec/high-level-design-for-electronics/homework/homework-3/hls-gem5-rgb2gray/hls/src/image_accel.cpp",
+                                    "line": 103,
+                                    "column": 18
+                                },
+                                "id": "VId_42_.A0(0,64)",
+                                "name": "rgb_stream.Handle",
+                                "display_name": "image_accel_rgb_t *rgb_stream_t::Handle"
+                            },
+                            "reads": [],
+                            "writes": [
+                                {
+                                    "access_kind": "Fifo",
+                                    "range": {
+                                        "is_exact": false,
+                                        "is_empty": false
+                                    },
+                                    "instr": "call",
+                                    "exec_count": 516
+                                }
+                            ],
+                            "kind": "Fifo",
+                            "has_alias": false
+                        },
+                        {
+                            "variable": {
+                                "location": {
+                                    "file": "/home/ronny/tec/high-level-design-for-electronics/homework/homework-3/hls-gem5-rgb2gray/hls/src/image_accel.cpp",
+                                    "line": 83,
+                                    "column": 0
+                                },
+                                "id": "VId_41_!c?(?,?)",
+                                "name": "num_pixels",
+                                "display_name": "image_accel_pixel_count_t num_pixels"
+                            },
+                            "reads": [
+                                {
+                                    "access_kind": "SSA",
+                                    "range": {
+                                        "is_exact": true,
+                                        "is_empty": false
+                                    },
+                                    "instr": "call",
+                                    "exec_count": 1
+                                }
+                            ],
+                            "writes": [],
+                            "kind": "SSA",
+                            "has_alias": false,
+                            "arg_idx": 2
+                        }
+                    ]
+                },
+                "subregions": [
+                    {
+                        "id": "%F220_R3",
+                        "description": "<call '(anonymous namespace)::read_input'>",
+                        "src_range": {
+                            "start_loc": {
+                                "file": "/home/ronny/tec/high-level-design-for-electronics/homework/homework-3/hls-gem5-rgb2gray/hls/src/image_accel.cpp",
+                                "line": 108,
+                                "column": 5
+                            },
+                            "end_loc": {
+                                "file": "/home/ronny/tec/high-level-design-for-electronics/homework/homework-3/hls-gem5-rgb2gray/hls/src/image_accel.cpp",
+                                "line": 108,
+                                "column": 49
+                            }
+                        }
+                    }
+                ],
+                "subdataflow": [
+                    {
+                        "id": "%F225",
+                        "region_type": "Function",
+                        "src_range": {
+                            "start_loc": {
+                                "file": "/home/ronny/tec/high-level-design-for-electronics/homework/homework-3/hls-gem5-rgb2gray/hls/src/image_accel.cpp",
+                                "line": 108,
+                                "column": 5
+                            },
+                            "end_loc": {
+                                "file": "/home/ronny/tec/high-level-design-for-electronics/homework/homework-3/hls-gem5-rgb2gray/hls/src/image_accel.cpp",
+                                "line": 108,
+                                "column": 49
+                            }
+                        }
+                    }
+                ]
+            },
+            "5": {
+                "id": "5",
+                "name": "Region<Call(R4 image_accel) BB 'entry_iso2' Callee '(anonymous namespace)::rgb_to_gray'>",
+                "src_range": {
+                    "start_loc": {
+                        "file": "/home/ronny/tec/high-level-design-for-electronics/homework/homework-3/hls-gem5-rgb2gray/hls/src/image_accel.cpp",
+                        "line": 109,
+                        "column": 5
+                    },
+                    "end_loc": {
+                        "file": "/home/ronny/tec/high-level-design-for-electronics/homework/homework-3/hls-gem5-rgb2gray/hls/src/image_accel.cpp",
+                        "line": 109,
+                        "column": 52
+                    }
+                },
+                "display_name": "process_loop",
+                "io_signatures": {
+                    "has_unresolved_accesses": false,
+                    "accesses": [
+                        {
+                            "variable": {
+                                "location": {
+                                    "file": "/home/ronny/tec/high-level-design-for-electronics/homework/homework-3/hls-gem5-rgb2gray/hls/src/image_accel.cpp",
+                                    "line": 103,
+                                    "column": 18
+                                },
+                                "id": "VId_42_.A0(0,64)",
+                                "name": "rgb_stream.Handle",
+                                "display_name": "image_accel_rgb_t *rgb_stream_t::Handle"
+                            },
+                            "reads": [
+                                {
+                                    "access_kind": "Fifo",
+                                    "range": {
+                                        "is_exact": false,
+                                        "is_empty": false
+                                    },
+                                    "instr": "call",
+                                    "exec_count": 516
+                                }
+                            ],
+                            "writes": [],
+                            "kind": "Fifo",
+                            "has_alias": false
+                        },
+                        {
+                            "variable": {
+                                "location": {
+                                    "file": "/home/ronny/tec/high-level-design-for-electronics/homework/homework-3/hls-gem5-rgb2gray/hls/src/image_accel.cpp",
+                                    "line": 104,
+                                    "column": 19
+                                },
+                                "id": "VId_43_.A0(0,64)",
+                                "name": "gray_stream.Handle",
+                                "display_name": "ap_uint<8> *gray_stream_t::Handle"
+                            },
+                            "reads": [],
+                            "writes": [
+                                {
+                                    "access_kind": "Fifo",
+                                    "range": {
+                                        "is_exact": false,
+                                        "is_empty": false
+                                    },
+                                    "instr": "call",
+                                    "exec_count": 516
+                                }
+                            ],
+                            "kind": "Fifo",
+                            "has_alias": false
+                        },
+                        {
+                            "variable": {
+                                "location": {
+                                    "file": "/home/ronny/tec/high-level-design-for-electronics/homework/homework-3/hls-gem5-rgb2gray/hls/src/image_accel.cpp",
+                                    "line": 83,
+                                    "column": 0
+                                },
+                                "id": "VId_41_!c?(?,?)",
+                                "name": "num_pixels",
+                                "display_name": "image_accel_pixel_count_t num_pixels"
+                            },
+                            "reads": [
+                                {
+                                    "access_kind": "SSA",
+                                    "range": {
+                                        "is_exact": true,
+                                        "is_empty": false
+                                    },
+                                    "instr": "call",
+                                    "exec_count": 1
+                                }
+                            ],
+                            "writes": [],
+                            "kind": "SSA",
+                            "has_alias": false,
+                            "arg_idx": 2
+                        }
+                    ]
+                },
+                "subregions": [
+                    {
+                        "id": "%F220_R4",
+                        "description": "<call '(anonymous namespace)::rgb_to_gray'>",
+                        "src_range": {
+                            "start_loc": {
+                                "file": "/home/ronny/tec/high-level-design-for-electronics/homework/homework-3/hls-gem5-rgb2gray/hls/src/image_accel.cpp",
+                                "line": 109,
+                                "column": 5
+                            },
+                            "end_loc": {
+                                "file": "/home/ronny/tec/high-level-design-for-electronics/homework/homework-3/hls-gem5-rgb2gray/hls/src/image_accel.cpp",
+                                "line": 109,
+                                "column": 52
+                            }
+                        }
+                    }
+                ],
+                "subdataflow": [
+                    {
+                        "id": "%F226",
+                        "region_type": "Function",
+                        "src_range": {
+                            "start_loc": {
+                                "file": "/home/ronny/tec/high-level-design-for-electronics/homework/homework-3/hls-gem5-rgb2gray/hls/src/image_accel.cpp",
+                                "line": 109,
+                                "column": 5
+                            },
+                            "end_loc": {
+                                "file": "/home/ronny/tec/high-level-design-for-electronics/homework/homework-3/hls-gem5-rgb2gray/hls/src/image_accel.cpp",
+                                "line": 109,
+                                "column": 52
+                            }
+                        }
+                    }
+                ]
+            },
+            "6": {
+                "id": "6",
+                "name": "Region<Call(R5 image_accel) BB 'entry_iso3' Callee '(anonymous namespace)::write_output'>",
+                "src_range": {
+                    "start_loc": {
+                        "file": "/home/ronny/tec/high-level-design-for-electronics/homework/homework-3/hls-gem5-rgb2gray/hls/src/image_accel.cpp",
+                        "line": 110,
+                        "column": 5
+                    },
+                    "end_loc": {
+                        "file": "/home/ronny/tec/high-level-design-for-electronics/homework/homework-3/hls-gem5-rgb2gray/hls/src/image_accel.cpp",
+                        "line": 110,
+                        "column": 54
+                    }
+                },
+                "display_name": "write_loop",
+                "io_signatures": {
+                    "has_unresolved_accesses": false,
+                    "accesses": [
+                        {
+                            "variable": {
+                                "location": {
+                                    "file": "/home/ronny/tec/high-level-design-for-electronics/homework/homework-3/hls-gem5-rgb2gray/hls/src/image_accel.cpp",
+                                    "line": 82,
+                                    "column": 0
+                                },
+                                "id": "VId_40_*0(0,8)arg+?(?,8)",
+                                "name": "(*output_gray)",
+                                "display_name": "volatile image_accel_byte_t *output_gray"
+                            },
+                            "reads": [],
+                            "writes": [
+                                {
+                                    "access_kind": "Ptr",
+                                    "range": {
+                                        "is_exact": false,
+                                        "is_empty": false
+                                    },
+                                    "instr": "store",
+                                    "exec_count": 516
+                                }
+                            ],
+                            "kind": "Ptr",
+                            "has_alias": false,
+                            "arg_idx": 1
+                        },
+                        {
+                            "variable": {
+                                "location": {
+                                    "file": "/home/ronny/tec/high-level-design-for-electronics/homework/homework-3/hls-gem5-rgb2gray/hls/src/image_accel.cpp",
+                                    "line": 104,
+                                    "column": 19
+                                },
+                                "id": "VId_43_.A0(0,64)",
+                                "name": "gray_stream.Handle",
+                                "display_name": "ap_uint<8> *gray_stream_t::Handle"
+                            },
+                            "reads": [
+                                {
+                                    "access_kind": "Fifo",
+                                    "range": {
+                                        "is_exact": false,
+                                        "is_empty": false
+                                    },
+                                    "instr": "call",
+                                    "exec_count": 516
+                                }
+                            ],
+                            "writes": [],
+                            "kind": "Fifo",
+                            "has_alias": false
+                        },
+                        {
+                            "variable": {
+                                "location": {
+                                    "file": "/home/ronny/tec/high-level-design-for-electronics/homework/homework-3/hls-gem5-rgb2gray/hls/src/image_accel.cpp",
+                                    "line": 83,
+                                    "column": 0
+                                },
+                                "id": "VId_41_!c?(?,?)",
+                                "name": "num_pixels",
+                                "display_name": "image_accel_pixel_count_t num_pixels"
+                            },
+                            "reads": [
+                                {
+                                    "access_kind": "SSA",
+                                    "range": {
+                                        "is_exact": true,
+                                        "is_empty": false
+                                    },
+                                    "instr": "call",
+                                    "exec_count": 1
+                                }
+                            ],
+                            "writes": [],
+                            "kind": "SSA",
+                            "has_alias": false,
+                            "arg_idx": 2
+                        }
+                    ]
+                },
+                "subregions": [
+                    {
+                        "id": "%F220_R5",
+                        "description": "<call '(anonymous namespace)::write_output'>",
+                        "src_range": {
+                            "start_loc": {
+                                "file": "/home/ronny/tec/high-level-design-for-electronics/homework/homework-3/hls-gem5-rgb2gray/hls/src/image_accel.cpp",
+                                "line": 110,
+                                "column": 5
+                            },
+                            "end_loc": {
+                                "file": "/home/ronny/tec/high-level-design-for-electronics/homework/homework-3/hls-gem5-rgb2gray/hls/src/image_accel.cpp",
+                                "line": 110,
+                                "column": 54
+                            }
+                        }
+                    }
+                ],
+                "subdataflow": [
+                    {
+                        "id": "%F227",
+                        "region_type": "Function",
+                        "src_range": {
+                            "start_loc": {
+                                "file": "/home/ronny/tec/high-level-design-for-electronics/homework/homework-3/hls-gem5-rgb2gray/hls/src/image_accel.cpp",
+                                "line": 110,
+                                "column": 5
+                            },
+                            "end_loc": {
+                                "file": "/home/ronny/tec/high-level-design-for-electronics/homework/homework-3/hls-gem5-rgb2gray/hls/src/image_accel.cpp",
+                                "line": 110,
+                                "column": 54
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        "channels": {
+            "(*input_rgb)_RAW_1_4_#0": {
+                "name": "(*input_rgb)_RAW_1_4_#0",
+                "variable_id": "VId_39_*0(0,8)arg+?(?,8)",
+                "variable_name": "(*input_rgb)",
+                "declaration": "const volatile image_accel_byte_t *input_rgb",
+                "kind": "Ptr",
+                "dependence": "RAW",
+                "channel_width": 0,
+                "src_loc": {
+                    "file": "/home/ronny/tec/high-level-design-for-electronics/homework/homework-3/hls-gem5-rgb2gray/hls/src/image_accel.cpp",
+                    "line": 81,
+                    "column": 0
+                },
+                "source": "1",
+                "sink": "4"
+            },
+            "num_pixels_RAW_1_4_#1": {
+                "name": "num_pixels_RAW_1_4_#1",
+                "variable_id": "VId_41_!c?(?,?)",
+                "variable_name": "num_pixels",
+                "declaration": "image_accel_pixel_count_t num_pixels",
+                "kind": "SSA",
+                "dependence": "RAW",
+                "channel_width": 0,
+                "src_loc": {
+                    "file": "/home/ronny/tec/high-level-design-for-electronics/homework/homework-3/hls-gem5-rgb2gray/hls/src/image_accel.cpp",
+                    "line": 83,
+                    "column": 0
+                },
+                "source": "1",
+                "sink": "4"
+            },
+            "rgb_stream.Handle_RAW_4_5_#2": {
+                "name": "rgb_stream.Handle_RAW_4_5_#2",
+                "variable_id": "VId_42_.A0(0,64)",
+                "variable_name": "rgb_stream.Handle",
+                "declaration": "image_accel_rgb_t *rgb_stream_t::Handle",
+                "kind": "Fifo",
+                "dependence": "RAW",
+                "channel_width": 0,
+                "src_loc": {
+                    "file": "/home/ronny/tec/high-level-design-for-electronics/homework/homework-3/hls-gem5-rgb2gray/hls/src/image_accel.cpp",
+                    "line": 103,
+                    "column": 18
+                },
+                "source": "4",
+                "sink": "5"
+            },
+            "num_pixels_RAR_4_5_#3": {
+                "name": "num_pixels_RAR_4_5_#3",
+                "variable_id": "VId_41_!c?(?,?)",
+                "variable_name": "num_pixels",
+                "declaration": "image_accel_pixel_count_t num_pixels",
+                "kind": "SSA",
+                "dependence": "RAR",
+                "channel_width": 0,
+                "src_loc": {
+                    "file": "/home/ronny/tec/high-level-design-for-electronics/homework/homework-3/hls-gem5-rgb2gray/hls/src/image_accel.cpp",
+                    "line": 83,
+                    "column": 0
+                },
+                "source": "4",
+                "sink": "5"
+            },
+            "gray_stream.Handle_RAW_5_6_#4": {
+                "name": "gray_stream.Handle_RAW_5_6_#4",
+                "variable_id": "VId_43_.A0(0,64)",
+                "variable_name": "gray_stream.Handle",
+                "declaration": "ap_uint<8> *gray_stream_t::Handle",
+                "kind": "Fifo",
+                "dependence": "RAW",
+                "channel_width": 0,
+                "src_loc": {
+                    "file": "/home/ronny/tec/high-level-design-for-electronics/homework/homework-3/hls-gem5-rgb2gray/hls/src/image_accel.cpp",
+                    "line": 104,
+                    "column": 19
+                },
+                "source": "5",
+                "sink": "6"
+            },
+            "num_pixels_RAR_5_6_#5": {
+                "name": "num_pixels_RAR_5_6_#5",
+                "variable_id": "VId_41_!c?(?,?)",
+                "variable_name": "num_pixels",
+                "declaration": "image_accel_pixel_count_t num_pixels",
+                "kind": "SSA",
+                "dependence": "RAR",
+                "channel_width": 0,
+                "src_loc": {
+                    "file": "/home/ronny/tec/high-level-design-for-electronics/homework/homework-3/hls-gem5-rgb2gray/hls/src/image_accel.cpp",
+                    "line": 83,
+                    "column": 0
+                },
+                "source": "5",
+                "sink": "6"
+            },
+            "(*output_gray)_RAW_6_2_#6": {
+                "name": "(*output_gray)_RAW_6_2_#6",
+                "variable_id": "VId_40_*0(0,8)arg+?(?,8)",
+                "variable_name": "(*output_gray)",
+                "declaration": "volatile image_accel_byte_t *output_gray",
+                "kind": "Ptr",
+                "dependence": "RAW",
+                "channel_width": 0,
+                "src_loc": {
+                    "file": "/home/ronny/tec/high-level-design-for-electronics/homework/homework-3/hls-gem5-rgb2gray/hls/src/image_accel.cpp",
+                    "line": 82,
+                    "column": 0
+                },
+                "source": "6",
+                "sink": "2"
+            }
+        },
+        "control": [
+            {
+                "source": "3",
+                "sink": "4"
+            },
+            {
+                "source": "4",
+                "sink": "5"
+            },
+            {
+                "source": "5",
+                "sink": "6"
+            },
+            {
+                "source": "1",
+                "sink": "3"
+            },
+            {
+                "source": "6",
+                "sink": "2"
+            }
+        ]
+    }
+]

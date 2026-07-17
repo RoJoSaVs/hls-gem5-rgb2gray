@@ -1,0 +1,110 @@
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: ../src/image_accel.cpp, Line: 58, Column: 27 }
+Function:        _ZN12_GLOBAL__N_111rgb_to_grayERN3hls6streamI17image_accel_rgb_tLi0EEERNS1_I7ap_uintILi8EELi0EEEj
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          '(anonymous namespace)::grayscale_from_rgb(image_accel_rgb_t const&)'
+    DebugLoc:        { File: ../src/image_accel.cpp, Line: 36, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          '(anonymous namespace)::rgb_to_gray(hls::stream<image_accel_rgb_t, 0>&, hls::stream<ap_uint<8>, 0>&, unsigned int)'
+    DebugLoc:        { File: ../src/image_accel.cpp, Line: 51, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-aggr
+Name:            AggrSucc
+DebugLoc:        { File: ../src/image_accel.cpp, Line: 103, Column: 15 }
+Function:        image_accel
+Args:            
+  - String:          'Aggregating '
+  - HwTyName:        'fifo (hls::stream)'
+  - String:          ' variable '''
+  - Name:            rgb_stream
+  - String:          ''' with '
+  - AggregateTypeName: 'compact=bit'
+  - String:          ' mode in '
+  - Bitwidth:        '24'
+  - String:          '-bits'
+...
+--- !Missed
+Pass:            reflow-burst-inference
+Name:            NonSimpleMemoryAccess
+DebugLoc:        { File: ../src/image_accel.cpp, Line: 25, Column: 54 }
+Function:        _ZN12_GLOBAL__N_110read_inputEPVKhRN3hls6streamI17image_accel_rgb_tLi0EEEj
+Args:            
+  - String:          Volatile or Atomic access cannot be transformed
+  - String:          ' _XLX_SEP_ '
+  - OrigAccess:      pixel.r
+    DebugLoc:        { File: ../src/image_accel.cpp, Line: 25, Column: 54 }
+  - OrigDirection:   read
+  - OrigID:          for.inc.load.7
+  - ArrayName:       input_rgb
+  - String:          ' '
+  - BundleName:      gmem0
+  - String:          ' '
+  - Function:        '(anonymous namespace)::read_input(unsigned char const volatile*, hls::stream<image_accel_rgb_t, 0>&, unsigned int)'
+    DebugLoc:        { File: ../src/image_accel.cpp, Line: 15, Column: 0 }
+  - String:          ' '
+...
+--- !Missed
+Pass:            reflow-burst-inference
+Name:            NonSimpleMemoryAccess
+DebugLoc:        { File: ../src/image_accel.cpp, Line: 26, Column: 54 }
+Function:        _ZN12_GLOBAL__N_110read_inputEPVKhRN3hls6streamI17image_accel_rgb_tLi0EEEj
+Args:            
+  - String:          Volatile or Atomic access cannot be transformed
+  - String:          ' _XLX_SEP_ '
+  - OrigAccess:      pixel.g
+    DebugLoc:        { File: ../src/image_accel.cpp, Line: 26, Column: 54 }
+  - OrigDirection:   read
+  - OrigID:          for.inc.load.12
+  - ArrayName:       input_rgb
+  - String:          ' '
+  - BundleName:      gmem0
+  - String:          ' '
+  - Function:        '(anonymous namespace)::read_input(unsigned char const volatile*, hls::stream<image_accel_rgb_t, 0>&, unsigned int)'
+    DebugLoc:        { File: ../src/image_accel.cpp, Line: 15, Column: 0 }
+  - String:          ' '
+...
+--- !Missed
+Pass:            reflow-burst-inference
+Name:            NonSimpleMemoryAccess
+DebugLoc:        { File: ../src/image_accel.cpp, Line: 27, Column: 54 }
+Function:        _ZN12_GLOBAL__N_110read_inputEPVKhRN3hls6streamI17image_accel_rgb_tLi0EEEj
+Args:            
+  - String:          Volatile or Atomic access cannot be transformed
+  - String:          ' _XLX_SEP_ '
+  - OrigAccess:      pixel.b
+    DebugLoc:        { File: ../src/image_accel.cpp, Line: 27, Column: 54 }
+  - OrigDirection:   read
+  - OrigID:          for.inc.load.17
+  - ArrayName:       input_rgb
+  - String:          ' '
+  - BundleName:      gmem0
+  - String:          ' '
+  - Function:        '(anonymous namespace)::read_input(unsigned char const volatile*, hls::stream<image_accel_rgb_t, 0>&, unsigned int)'
+    DebugLoc:        { File: ../src/image_accel.cpp, Line: 15, Column: 0 }
+  - String:          ' '
+...
+--- !Missed
+Pass:            reflow-burst-inference
+Name:            NonSimpleMemoryAccess
+DebugLoc:        { File: ../src/image_accel.cpp, Line: 73, Column: 17 }
+Function:        _ZN12_GLOBAL__N_112write_outputEPVhRN3hls6streamI7ap_uintILi8EELi0EEEj
+Args:            
+  - String:          Volatile or Atomic access cannot be transformed
+  - String:          ' _XLX_SEP_ '
+  - OrigAccess:      store
+    DebugLoc:        { File: ../src/image_accel.cpp, Line: 73, Column: 17 }
+  - OrigDirection:   write
+  - OrigID:          for.inc.store.4
+  - ArrayName:       output_gray
+  - String:          ' '
+  - BundleName:      gmem1
+  - String:          ' '
+  - Function:        '(anonymous namespace)::write_output(unsigned char volatile*, hls::stream<ap_uint<8>, 0>&, unsigned int)'
+    DebugLoc:        { File: ../src/image_accel.cpp, Line: 67, Column: 0 }
+  - String:          ' '
+...
