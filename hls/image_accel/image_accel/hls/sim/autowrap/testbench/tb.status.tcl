@@ -1,1 +1,0 @@
-set ::AESL_AUTOSIM::gTopFileName /home/ronny/tec/high-level-design-for-electronics/homework/homework-3/hls-gem5-rgb2gray/hls/image_accel/image_accel/hls/./sim/autowrap/testbench/image_accel.cpp_pre.cpp.tb.cpp

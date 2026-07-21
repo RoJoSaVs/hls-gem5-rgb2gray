@@ -1,1 +1,0 @@
-image_accel testbench passed

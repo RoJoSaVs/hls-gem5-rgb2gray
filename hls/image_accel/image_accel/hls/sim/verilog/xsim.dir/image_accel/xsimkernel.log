@@ -1,7 +1,0 @@
-Running: xsim.dir/image_accel/xsimk -simmode gui -wdb image_accel.wdb -simrunnum 0 -socket 36079
-Design successfully loaded
-Design Loading Memory Usage: 37516 KB (Peak: 37524 KB)
-Design Loading CPU Usage: 70 ms
-Simulation completed
-Simulation Memory Usage: 393668 KB (Peak: 524744 KB)
-Simulation CPU Usage: 36220 ms

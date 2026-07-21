@@ -1,3 +1,0 @@
-relativeroot=/home/ronny/tec/high-level-design-for-electronics/homework/homework-3/hls-gem5-rgb2gray/hls/image_accel
-original_argv=--mode hls --package --config /home/ronny/tec/high-level-design-for-electronics/homework/homework-3/hls-gem5-rgb2gray/hls/image_accel/hls_config.cfg --work_dir image_accel 
-
