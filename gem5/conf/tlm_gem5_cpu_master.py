@@ -15,15 +15,36 @@ system.cpu = ArmTimingSimpleCPU()
 system.membus = IOXBar(width=16)
 
 # RAM memory
-system.mem_ctrl = SimpleMemory()
+system.ram = SimpleMemory()
 
-# TODO: Check if init addr needs to be specified
-system.mem_ctrl.range = AddrRange(size="64MiB")
+system.ram.range = AddrRange(
+    start=0x00000000,
+    size="64MiB"
+)
+
+# 'Persistent' memory
+system.nvm = SimpleMemory()
+
+system.nvm.range = AddrRange(
+    start=0x20000000,
+    size="1000MiB"
+)
+
+system.nvm.bandwidth = "4GiB/s"
 
 # Bridge to SystemC module
 system.tlm = ExternalSlave()
-# TODO: Update address ranges
-system.tlm.addr_ranges = [AddrRange("64MiB")]
+# Memory start according to the initial memory map
+system.tlm.addr_ranges = [
+    AddrRange(
+        start=0x10000000,
+        size="256MiB"
+    )
+]
+
+system.nvm.latency = "1us"
+system.nvm.bandwidth = "500MiB/s"
+
 system.tlm.port_type = "tlm_slave"
 system.tlm.port_data = "transactor"
 
@@ -31,9 +52,11 @@ system.tlm.port_data = "transactor"
 
 # Connections
 system.cpu.icache_port = system.membus.cpu_side_ports
-system.cpu.icache_port = system.membus.cpu_side_ports
+system.cpu.dcache_port = system.membus.cpu_side_ports
 
-system.mem_ctrl.port = system.membus.mem_side_ports
+system.ram.port = system.membus.mem_side_ports
+
+system.nvm.port = system.membus.mem_side_ports
 
 system.membus.mem_side_ports = system.tlm.port
 
