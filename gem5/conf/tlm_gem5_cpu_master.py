@@ -1,6 +1,17 @@
+import argparse
+import os
 import m5
 from m5.objects import *
 
+parser = argparse.ArgumentParser()
+parser.add_argument(
+    "--image",
+    required=True,
+    help="Raw RGB image to convert,
+    default="#../../pictures/raw/grumpy-online.raw"
+)
+args = parser.parse_args()
+image_path = os.path.abspath(args.image)
 
 system = System()
 
@@ -23,12 +34,17 @@ system.ram.range = AddrRange(
 )
 
 # 'Persistent' memory
+raw_image = os.path.join(image_path)
+
 system.nvm = SimpleMemory()
 
 system.nvm.range = AddrRange(
     start=0x20000000,
     size="1000MiB"
 )
+
+# Set the image into the memory
+system.nvm.image_file = raw_image
 
 system.nvm.bandwidth = "4GiB/s"
 
