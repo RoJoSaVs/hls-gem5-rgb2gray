@@ -2,8 +2,13 @@
 #include <gem5/m5ops.h>
 
 // Image information
-#define IMAGE_WIDTH       64U
-#define IMAGE_HEIGHT      64U
+#ifndef IMAGE_WIDTH
+#define IMAGE_WIDTH 64U
+#endif
+
+#ifndef IMAGE_HEIGHT
+#define IMAGE_HEIGHT 64U
+#endif
 #define NUM_PIXELS        (IMAGE_WIDTH * IMAGE_HEIGHT)
 #define RGB_SIZE          (NUM_PIXELS * 3U)
 #define GRAY_SIZE         NUM_PIXELS
