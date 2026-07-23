@@ -3,11 +3,12 @@
 #include <systemc>
 #include <tlm>
 
-#include "cli_parser.hh"
+#include "cli_parser_local.hh"
 #include "report_handler.hh"
 #include "accelerator.hh"
 #include "sim_control.hh"
 #include "slave_transactor.hh"
+#include "master_transactor.hh"
 #include "stats.hh"
 
 int sc_main (int argc, char **argv)
@@ -22,13 +23,21 @@ int sc_main (int argc, char **argv)
                                            parser.getSimulationEnd(),
                                            parser.getDebugFlags());
 
-    unsigned long long int accel_size = 256*1024*1024ULL;
-
-    // TODO: connect transactor to accelerator
-    Gem5SystemC::Gem5SlaveTransactor transactor("transactor", "transactor");
+    // Create gem5 - SystemC bridges
+    Gem5SystemC::Gem5SlaveTransactor cfg_transactor("cfg_transactor",
+                                                "cfg_transactor");
     
-    memory.socket.bind(transactor.socket);
-    transactor.sim_control.bind(sim_control);
+    Gem5SystemC::Gem5MasterTransactor dma_transactor("dma_transactor",
+                                                    "dma_transactor");
+
+    Accelerator accelerator("accelerator");
+
+    // Bind sockets
+    accelerator.cfg_socket.bind(cfg_transactor.socket);
+    cfg_transactor.sim_control.bind(sim_control);
+
+    accelerator.dma_socket.bind(dma_transactor.socket);
+    dma_transactor.sim_control.bind(sim_control);
 
     SC_REPORT_INFO("sc_main", "Start of Simulation");
 
