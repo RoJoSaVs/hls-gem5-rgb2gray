@@ -17,6 +17,8 @@ systemc_src += Install('.', systemc_util_dir + '/sc_module.cc'),
 systemc_src += Install('.', systemc_util_dir + '/stats.cc'),
 
 tlm_src = []
+tlm_src += Install('.', tlm_util_dir + '/master_transactor.cc')
+tlm_src += Install('.', tlm_util_dir + '/sc_master_port.cc')
 tlm_src += Install('.', tlm_util_dir + '/sc_ext.cc')
 tlm_src += Install('.', tlm_util_dir + '/sc_mm.cc')
 tlm_src += Install('.', tlm_util_dir + '/sc_slave_port.cc')
