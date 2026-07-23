@@ -8,14 +8,11 @@ gem5_variant = 'opt'
 
 env = Environment()
 
-print(f"ARGUMENTS = {ARGUMENTS}")
 
+# Need to point to the gem5 root to build
 gem5_root_dir = ARGUMENTS.get('gem5_root', '#../../gem5')
 
 gem5_root = Dir(gem5_root_dir).srcnode().abspath
-
-
-print("root = ",  gem5_root)
 
 #Make the gem5 root available in SConscripts
 env['GEM5_ROOT'] = gem5_root
@@ -60,6 +57,8 @@ common = SConscript(gem5_root + '/util/tlm/examples/common/SConscript',
                    exports=['env'],
                    duplicate=GetOption('duplicate_sources'))
 
+# The sources for cli_parser have an error in the latest version
+# We build a local version instead
 ignored_objects = {
     'cli_parser.o',
 }
@@ -71,7 +70,6 @@ deps += [
 
 # the SystemC SConscript makes certain assumptions, we need to fulfill these
 # assumptions before calling the SConscript.
-#sys.path.append(gem5_root + '/src/python')
 sys.path.append(os.path.join(gem5_root, 'src', 'python'))
 sys.path.append(os.path.join(gem5_root, 'site_scons'))
 
