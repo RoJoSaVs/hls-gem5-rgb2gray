@@ -1,0 +1,6 @@
+/build/
+/m5out/
+*.raw
+*.png
+*.elf
+*.sconsign.dblite
