@@ -1,2 +1,5 @@
 # Vitis generated workspace
 /build/
+.Xil/
+.metadata/
+*.log

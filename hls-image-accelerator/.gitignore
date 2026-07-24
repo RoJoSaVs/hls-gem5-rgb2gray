@@ -5,8 +5,12 @@
 .lock
 *.jou
 *.log
+*.str
+*.pb
+*.wdb
 
 # Per-tool generated output directories.
+/logs/
 hls/build/
 hls/build.pre-refactor/
 hls/export/

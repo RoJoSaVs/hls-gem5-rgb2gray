@@ -1,63 +1,66 @@
-# SystemC/TLM RGB-to-Grayscale Accelerator
+# Acelerador RGB a escala de grises en SystemC/TLM
 
-This is the original software/SystemC model. It models a CPU, TLM bus, shared
-RAM, persistent storage, and an RGB-to-grayscale accelerator. It runs natively
-on the host and does not require Vitis, Vivado, or a KV260 board.
+Este es el modelo original de software/SystemC. Modela un CPU, un bus TLM, RAM
+compartida, almacenamiento persistente y un acelerador RGB a escala de grises.
+Se ejecuta de forma nativa en el host y no requiere Vitis, Vivado ni una
+tarjeta KV260.
 
-## Contents
+## Contenido
 
-| Path | Purpose |
+| Ruta | Propósito |
 |---|---|
-| `src/` | SystemC/TLM CPU, bus, RAM, storage, and accelerator model |
-| `pictures/` | Example JPEG images and RAW RGB888 input |
-| `scripts/` | Image-to-RAW and RAW-to-image conversion utilities |
-| `CMakeLists.txt`, `Makefile` | Native build flow |
+| `src/` | Modelo SystemC/TLM de CPU, bus, RAM, almacenamiento y acelerador |
+| `pictures/` | Imágenes JPEG de ejemplo y entrada RAW RGB888 |
+| `scripts/` | Utilidades de conversión de imagen a RAW y de RAW a imagen |
+| `CMakeLists.txt`, `Makefile` | Flujo de compilación nativo |
 
-## Requirements
+## Requisitos
 
-On Fedora:
+En Fedora:
 
 ```bash
 sudo dnf install -y gcc-c++ make cmake systemc systemc-devel python3-pip
 ```
 
-On Ubuntu/Debian, install a SystemC distribution and set `SYSTEMC_HOME` to its
-installation directory. The image helpers require Pillow:
+En Ubuntu/Debian, instala una distribución de SystemC y asigna
+`SYSTEMC_HOME` a su directorio de instalación. Las utilidades de imagen
+requieren Pillow:
 
 ```bash
 python3 -m pip install pillow
 ```
 
-## Build
+## Compilar
 
-From this directory, build with the location of your SystemC installation:
+Desde este directorio, compila indicando la ubicación de la instalación de
+SystemC:
 
 ```bash
 make native-build SYSTEMC_HOME=/usr
 ```
 
-For a manually installed SystemC distribution:
+Para una distribución de SystemC instalada manualmente:
 
 ```bash
 make native-build SYSTEMC_HOME=/opt/systemc
 ```
 
-Expected output:
+Salida esperada:
 
 ```text
 build/rgb2gray
 ```
 
-## Run the example image
+## Ejecutar la imagen de ejemplo
 
 ```bash
 make native-run SYSTEMC_HOME=/usr
 ```
 
-The default execution reads `pictures/raw/grumpy-online.raw` and writes
+La ejecución predeterminada lee `pictures/raw/grumpy-online.raw` y escribe
 `build/output.raw`.
 
-Expected terminal output includes:
+La salida esperada en terminal incluye:
 
 ```text
 CPU: pipeline start
@@ -67,59 +70,60 @@ Storage: wrote 2073600 B to 'build/output.raw'
 CPU: pipeline done
 ```
 
-Convert the one-byte-per-pixel grayscale output to PNG:
+Convierte la salida de escala de grises, de un byte por píxel, a PNG:
 
 ```bash
 python3 scripts/raw_to_image.py build/output.raw build/output.png --mode gray
 ```
 
-## Run a custom image
+## Ejecutar una imagen personalizada
 
-Input images must be converted to headerless 1920x1080 RAW RGB888 first.
+Primero se debe convertir la imagen a RAW RGB888 sin encabezado y con
+resolución 1920x1080.
 
-For an image already at 1920x1080:
-
-```bash
-python3 scripts/image_to_raw.py path/to/image.png build/input.raw
-```
-
-To resize another image to 1920x1080:
+Para una imagen que ya tiene resolución 1920x1080:
 
 ```bash
-python3 scripts/image_to_raw.py path/to/image.png build/input.raw --resize
+python3 scripts/image_to_raw.py ruta/a/imagen.png build/input.raw
 ```
 
-Run the model and view the result:
+Para redimensionar otra imagen a 1920x1080:
+
+```bash
+python3 scripts/image_to_raw.py ruta/a/imagen.png build/input.raw --resize
+```
+
+Ejecuta el modelo y visualiza el resultado:
 
 ```bash
 build/rgb2gray build/input.raw build/output.raw
 python3 scripts/raw_to_image.py build/output.raw build/output.png --mode gray
 ```
 
-The input is `1920 * 1080 * 3 = 6,220,800` bytes. The output is
+La entrada tiene `1920 * 1080 * 3 = 6,220,800` bytes. La salida tiene
 `1920 * 1080 = 2,073,600` bytes.
 
-## Accelerator behavior
+## Comportamiento del acelerador
 
-The model reads RGB bytes in `R, G, B` order and produces one grayscale byte
-per pixel using this integer approximation:
+El modelo lee bytes RGB en orden `R, G, B` y produce un byte de escala de grises
+por píxel con la siguiente aproximación entera:
 
 ```text
 gray = (77 * R + 150 * G + 29 * B) >> 8
 ```
 
-The SystemC/TLM model uses `tlm::tlm_generic_payload` and `b_transport` for
-the interactions between CPU, bus, RAM, accelerator, and storage.
+El modelo SystemC/TLM usa `tlm::tlm_generic_payload` y `b_transport` para las
+interacciones entre CPU, bus, RAM, acelerador y almacenamiento.
 
-## Architecture
+## Arquitectura
 
 ```mermaid
 flowchart LR
-    CPU[CPU / Initiator TLM]
+    CPU[CPU / Iniciador TLM]
     BUS[Bus TLM]
     RAM[RAM 64 MB]
-    ACC[Accelerator RGB to Gray]
-    STG[Persistent Storage]
+    ACC[Acelerador RGB a gris]
+    STG[Almacenamiento persistente]
 
     CPU <--> BUS
     BUS <--> RAM
@@ -127,4 +131,3 @@ flowchart LR
     BUS <--> STG
     ACC --> RAM
 ```
-

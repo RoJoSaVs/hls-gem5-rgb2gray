@@ -1,17 +1,21 @@
-# Ignore build output directory
-/build
-/build.pre-refactor
+# Salida reproducible de compilacion y ejecucion.
+/build/
+/build.pre-refactor/
 
-# Ignore object files and dependent files
-.o
-.d
+# Archivos intermedios del compilador.
+*.o
+*.d
 
-# Ignore logs folder and log files
-/logs
-.log
+# Registros de compilacion y simulacion.
+/logs/
+*.log
+*.jou
+*.str
+*.pb
+*.wdb
 
-#Ignore lock files
+# Estado temporal de herramientas.
 .lock
 
-.bin
+*.bin
 /rgb2gray

@@ -10,7 +10,7 @@ escala de grises: Vitis HLS, Vivado y Vitis.
 | Implementacion HLS del acelerador | Completado | `hls/src/` |
 | Separacion de pipeline HLS | Completado | `read_input`, `rgb_to_gray`, `write_output` |
 | Interfaces AXI4-MM y AXI4-Lite | Completado | pragmas en `hls/src/image_accel.cpp` |
-| Testbench HLS | Completado | `hls/tb/image_accel_tb.cpp` |
+| Testbench HLS en C | Completado | `hls/tb/image_accel_tb.c` |
 | C simulation | Completado | ejecutado con script HLS |
 | C synthesis | Completado | ejecutado con script HLS |
 | C/RTL co-simulation | Completado | resultado `Verilog: Pass` |

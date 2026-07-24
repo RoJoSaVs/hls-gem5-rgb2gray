@@ -1,8 +1,11 @@
 # Vivado generated output
 /build/
+/export/
 *.jou
 *.log
 *.str
+*.pb
+*.wdb
 *.xpr
 *.cache/
 *.hw/
@@ -12,4 +15,3 @@
 *.srcs/
 *.gen/
 *.Xil/
-
