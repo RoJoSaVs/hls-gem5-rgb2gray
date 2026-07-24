@@ -26,6 +26,11 @@ hls-gem5-rgb2gray/
 │   ├── sw/                    Driver y aplicación bare-metal de Vitis
 │   ├── docs/                  Integración Vivado y estado del proyecto
 │   └── images/                Evidencia visual de ejecución en hardware
+├── gem5-accelerator/          Co-simulación Gem5/SystemC/TLM
+│   ├── c_program/             Programa bare-metal ARM64 y linker script
+│   ├── conf/                  Configuración del sistema Gem5
+│   ├── gem5_tlm_src/          Fuentes de integración Gem5-SystemC
+│   └── src/                   Módulos SystemC, mapa de memoria y ejecutable
 └── README.md                  Índice y organización global
 ```
 
