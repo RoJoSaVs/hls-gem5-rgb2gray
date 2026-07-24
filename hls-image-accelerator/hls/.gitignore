@@ -1,0 +1,30 @@
+# Salidas reproducibles de Vitis HLS.
+/build/
+/build.pre-refactor/
+/export/
+/image_accel/
+
+# Archivos intermedios y registros.
+*.o
+*.d
+*.log
+*.jou
+*.str
+*.pb
+*.wdb
+
+# Estado temporal del IDE y del flujo HLS.
+/logs/
+.Xil/
+.wsdata/
+.theia/
+.autopilot/
+*.hlsrun_*
+
+.lock
+
+*.bin
+*.pdi
+.peers.ini
+.repo.yaml
+.vitisWorkspace.json

@@ -1,0 +1,21 @@
+# HLS, Vivado, and Vitis generated state.
+.Xil/
+.wsdata/
+.theia/
+.lock
+*.jou
+*.log
+*.str
+*.pb
+*.wdb
+
+# Per-tool generated output directories.
+/logs/
+hls/build/
+hls/build.pre-refactor/
+hls/export/
+hls/image_accel/
+hls/logs/
+vivado/build/
+vivado/export/
+sw/build/

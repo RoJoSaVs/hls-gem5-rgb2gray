@@ -1,0 +1,17 @@
+# Vivado generated output
+/build/
+/export/
+*.jou
+*.log
+*.str
+*.pb
+*.wdb
+*.xpr
+*.cache/
+*.hw/
+*.ip_user_files/
+*.runs/
+*.sim/
+*.srcs/
+*.gen/
+*.Xil/

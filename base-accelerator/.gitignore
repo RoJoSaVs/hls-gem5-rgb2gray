@@ -1,0 +1,21 @@
+# Salida reproducible de compilacion y ejecucion.
+/build/
+/build.pre-refactor/
+
+# Archivos intermedios del compilador.
+*.o
+*.d
+
+# Registros de compilacion y simulacion.
+/logs/
+*.log
+*.jou
+*.str
+*.pb
+*.wdb
+
+# Estado temporal de herramientas.
+.lock
+
+*.bin
+/rgb2gray
