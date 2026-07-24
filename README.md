@@ -10,3 +10,25 @@ Este repositorio se divide en dos proyectos independientes:
 Cada proyecto tiene sus propios fuentes, resultados de compilación, scripts y
 README. Los comandos de compilación y ejecución deben ejecutarse desde el
 directorio del proyecto seleccionado.
+
+## Organización del repositorio
+
+```text
+hls-gem5-rgb2gray/
+├── base-accelerator/          Modelo original SystemC/TLM ejecutable en host
+│   ├── src/                   CPU, bus, RAM, almacenamiento y acelerador TLM
+│   ├── scripts/               Conversión entre imágenes y archivos RAW
+│   └── pictures/              Imágenes de ejemplo y entradas RAW
+├── hls-image-accelerator/     Implementación de hardware para KV260
+│   ├── hls/                   Fuentes, testbench y automatización Vitis HLS
+│   ├── vivado/                Scripts de block design, XSA y bitstream
+│   ├── sw/                    Driver y aplicación bare-metal de Vitis
+│   ├── docs/                  Integración Vivado y estado del proyecto
+│   └── images/                Evidencia visual de ejecución en hardware
+└── README.md                  Índice y organización global
+```
+
+Los directorios `build/`, `export/`, `logs/`, workspaces de Vitis y proyectos
+temporales de HLS/Vivado son productos reproducibles de los scripts y están
+excluidos por los archivos `.gitignore`. Se versionan las fuentes, testbenches,
+scripts, documentación y evidencias añadidas en `images/`.

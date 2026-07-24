@@ -210,3 +210,12 @@ el software escriba las direcciones fisicas reales en los registros HLS.
   usar un driver/mecanismo DMA compatible.
 - Si se usa bare-metal, se debe cuidar coherencia de cache antes y despues de
   ejecutar el acelerador.
+
+## Documentación relacionada
+
+- [`README principal del proyecto HLS`](../README.md): requisitos, compilación,
+  diagramas, mapa de memoria, resultados y organización de módulos.
+- [`Guía bare-metal`](../sw/baremetal/README.md): driver AXI4-Lite y aplicación
+  standalone.
+- [`Estado del proyecto`](project_status.md): entregables y evidencia del flujo
+  HLS, Vivado y Vitis.

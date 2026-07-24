@@ -5,6 +5,93 @@ testbench HLS, scripts de integración Vivado y un ejemplo de control
 bare-metal en Vitis. Es independiente del modelo SystemC/TLM del proyecto
 hermano.
 
+## Instrucciones para satisfacer requisitos y compilación
+
+Ejecuta los siguientes pasos desde este directorio para generar y verificar el
+IP HLS para la Kria KV260 a 250 MHz. El flujo utiliza Vitis HLS 2024.1, la
+parte `xck26-sfvc784-2LV-c`, interfaces AXI4 memory-mapped para los datos y
+AXI4-Lite para el control.
+
+1. Carga el entorno de AMD:
+
+```bash
+source /tools/Xilinx/Vitis/2024.1/settings64.sh
+source /tools/Xilinx/Vitis_HLS/2024.1/settings64.sh
+source /tools/Xilinx/Vivado/2024.1/settings64.sh
+```
+
+2. Crea o recupera el componente HLS en Vitis Unified IDE, solo si
+   `hls/image_accel/vitis-comp.json` no existe o el componente no aparece en
+   la interfaz. Abre como workspace la carpeta `hls/`, entra en **HLS
+   Development** y selecciona **Create Empty HLS Component**. No uses
+   **Create HLS Component from Library**.
+
+   Usa los siguientes valores en el asistente:
+
+| Campo | Valor correcto |
+|---|---|
+| Workspace | `hls-image-accelerator/hls/` |
+| Nombre del componente | `image_accel` |
+| Directorio del componente | `hls-image-accelerator/hls/image_accel/` |
+| Archivo de configuración | Crear un archivo nuevo `hls_config.cfg` si no existe uno válido. |
+| Design files | `src/image_accel.cpp`, `src/image_accel.hpp`, `src/image_accel_types.hpp` |
+| Testbench file | `tb/image_accel_tb.c` |
+| Función top | `image_accel` |
+| Product category | `General Purpose` |
+| Family | `Zynq UltraScale+ MPSoCs` |
+| Subfamily | `Kria K26`, si el selector presenta este campo. |
+| Package | `sfvc784` |
+| Speed grade | `-2LV` |
+| Temperature grade | `C` |
+| Parte resultante | `xck26-sfvc784-2LV-c` |
+| Clock period | `4 ns` (250 MHz) |
+| Clock uncertainty | `12.5%` |
+| Flow target | `Vivado IP` |
+| Package output | `Vivado IP and .zip archive` |
+
+   No selecciones `hls/image_accel/` como workspace: es la carpeta interna del
+   componente. No selecciones `sw/build/vitis_workspace`: es un workspace de
+   la IDE clásica creado por XSCT y Vitis Unified no puede abrirlo.
+
+   Los archivos `hls/image_accel/hls_config.cfg` y
+   `hls/image_accel/vitis-comp.json` son configuración local generada por la
+   interfaz y pueden contener rutas absolutas. Se mantienen fuera de Git; el
+   script Tcl versionado genera una configuración reproducible para compilar.
+
+3. Verifica que están presentes las fuentes sintetizables y el testbench:
+
+```bash
+ls hls/src/image_accel.cpp hls/src/image_accel.hpp \
+   hls/src/image_accel_types.hpp hls/tb/image_accel_tb.c
+```
+
+4. Ejecuta simulación C, síntesis, co-simulación C/RTL y empaquetado del IP:
+
+```bash
+cd hls
+tclsh scripts/run_hls.tcl
+```
+
+5. Confirma los resultados esperados:
+
+```text
+image_accel testbench passed
+HLS C simulation: pass
+HLS C synthesis: pass
+C/RTL co-simulation: Verilog: Pass
+Package/export: pass
+```
+
+6. Verifica que el IP empaquetado fue generado:
+
+```bash
+ls export/xilinx_com_hls_image_accel_1_0.zip
+```
+
+Los pasos de Vivado, creación del XSA y compilación de la aplicación
+bare-metal se describen más adelante; requieren que este empaquetado HLS haya
+terminado correctamente.
+
 ## Resumen del diseño
 
 | Elemento | Valor |
@@ -25,6 +112,33 @@ El diseño HLS se divide en tres etapas de flujo de datos:
 
 `hls::stream`, la directiva `DATAFLOW` y las directivas `PIPELINE` de los
 lazos conectan y segmentan estas etapas.
+
+## Diagrama de bloques HLS
+
+El bloque `image_accel` se integra entre el Processing System y DDR. El PS
+configura el IP por AXI4-Lite; los puertos master AXI4 del IP realizan las
+lecturas RGB y las escrituras grayscale directamente en DDR mediante
+SmartConnect.
+
+```mermaid
+flowchart LR
+    PS[Zynq UltraScale+ MPSoC PS]
+    CTRL[AXI SmartConnect<br/>control]
+    IP[image_accel HLS IP<br/>DATAFLOW]
+    MEM[AXI SmartConnect<br/>memoria]
+    DDR[(DDR)]
+
+    PS -->|AXI4-Lite| CTRL
+    CTRL -->|s_axi_control| IP
+    IP -->|m_axi_gmem0<br/>leer RGB888| MEM
+    IP -->|m_axi_gmem1<br/>escribir grayscale| MEM
+    MEM <--> DDR
+    PS <--> DDR
+    PS -->|ap_clk, ap_rst_n| IP
+```
+
+Dentro del IP, el flujo es `read_input` hacia `rgb_to_gray` y finalmente
+`write_output`; las etapas se conectan mediante `hls::stream`.
 
 ## Diagrama de secuencia
 
@@ -136,17 +250,53 @@ La tabla anterior queda como evidencia de placa cuando se agreguen las dos
 imágenes. No debe confundirse con el resultado del testbench: la validación C
 es funcional y no genera una imagen PNG.
 
-## Organización del proyecto
+## Organización de carpetas y módulos HLS
 
 | Ruta | Propósito |
 |---|---|
-| `hls/src/` | Función top sintetizable y tipos HLS |
+| `hls/src/` | Función top sintetizable, interfaz y tipos HLS |
 | `hls/tb/` | Testbench en C para simulación C y co-simulación C/RTL |
 | `hls/scripts/` | Flujo automatizado de Vitis HLS |
 | `vivado/scripts/` | Automatización del block design, XSA y bitstream |
 | `sw/baremetal/` | Driver de registros AXI4-Lite y aplicación standalone |
 | `sw/scripts/` | Script XSCT para compilar la aplicación |
 | `docs/` | Guía de integración y estado del proyecto |
+| `images/` | Evidencia visual obtenida al ejecutar en la KV260 |
+
+La carpeta se divide de la siguiente forma:
+
+```text
+hls-image-accelerator/
+├── hls/
+│   ├── src/                   Código C++ sintetizable por Vitis HLS
+│   ├── tb/                    Verificación funcional en C
+│   └── scripts/               Simulación, síntesis, co-simulación y package
+├── vivado/
+│   └── scripts/               IP repository, block design, XSA y bitstream
+├── sw/
+│   ├── baremetal/             Control de registros y aplicación standalone
+│   └── scripts/               Creación y compilación del workspace Vitis
+├── docs/                      Detalle de integración AXI y estado del flujo
+└── images/                    Capturas de entrada y salida de la placa
+```
+
+Los productos generados por estas etapas se ubican temporalmente en `build/`,
+`export/`, `logs/` o en workspaces de las herramientas. No forman parte del
+fuente del proyecto y se regeneran con los scripts descritos en este README.
+
+### Organización de módulos
+
+| Archivo o módulo | Responsabilidad |
+|---|---|
+| `hls/src/image_accel.hpp` | Declara la función top C `image_accel` y su contrato de datos. |
+| `hls/src/image_accel_types.hpp` | Define resolución, tamaños de buffer y tipos HLS seguros para síntesis. |
+| `hls/src/image_accel.cpp` | Implementa las interfaces AXI, `DATAFLOW` y las tres etapas internas. |
+| `read_input` | Lee bytes RAW RGB888 desde `m_axi_gmem0` y emite píxeles a un `hls::stream`. |
+| `rgb_to_gray` | Aplica `(77 * R + 150 * G + 29 * B) >> 8` a cada píxel. |
+| `write_output` | Escribe un byte grayscale por píxel mediante `m_axi_gmem1`. |
+| `hls/tb/image_accel_tb.c` | Compara la salida del IP contra la referencia dorada en simulación C y C/RTL. |
+| `sw/baremetal/image_accel_control.*` | Encapsula los offsets y accesos AXI4-Lite del IP. |
+| `sw/baremetal/main.c` | Prepara caché, configura el IP, espera finalización y expone el buffer de salida. |
 
 ## Requisitos
 
@@ -314,3 +464,36 @@ num_pixels = 2,073,600
 Consulta `docs/vivado_hls_integration.md` para la referencia completa de
 conexiones Vivado y mapa de registros, y `sw/baremetal/README.md` para la API
 de software.
+
+## Uso de IA generativa y prompts de mantenimiento
+
+Se utilizó asistencia de IA generativa como apoyo para organizar documentación,
+proponer texto técnico y revisar la consistencia entre fuentes, scripts y
+README. Todas las decisiones de diseño, interfaces AXI, direcciones, comandos
+y resultados deben verificarse contra los archivos del repositorio y las
+salidas de las herramientas AMD antes de entregarse.
+
+Los siguientes prompts son ejemplos reutilizables para mantenimiento. No
+sustituyen la revisión manual ni la ejecución de simulación, síntesis o
+co-simulación.
+
+```text
+Revise el README del acelerador HLS y actualice el diagrama de bloques, el
+diagrama de secuencia, las interfaces AXI y el mapa de memoria para que
+coincidan con image_accel.cpp, los scripts de Vivado y el driver bare-metal.
+No modifique el código funcional ni invente resultados de herramientas.
+```
+
+```text
+Revise el formato y la documentación del código C/C++ de Vitis HLS. Mantenga
+las pragmas HLS, las interfaces m_axi y s_axilite, y la fórmula de grayscale.
+Proponga únicamente cambios de estilo o comentarios que no alteren la función
+ni la síntesis; indique qué validación debe ejecutarse después.
+```
+
+```text
+Actualice la documentación externa del proyecto: README, guía de integración
+Vivado y guía bare-metal. Sincronice rutas, nombres de scripts, offsets AXI y
+artefactos generados; señale datos que dependan del XSA o de una ejecución real
+en la KV260.
+```
